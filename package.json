@@ -9,6 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
+    "vercel": "vercel dev",
     "build-storybook": "storybook build",
     "prepare": "husky install",
     "commit": "cz"
@@ -20,6 +21,7 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "@fontsource-variable/montserrat": "5.0.17",
     "@uidotdev/usehooks": "2.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

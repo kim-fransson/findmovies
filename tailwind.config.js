@@ -1,22 +1,31 @@
+import reactAriaComponents from "tailwindcss-react-aria-components";
+import tailwindcssAnimate from "tailwindcss-animate";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        yellow: "#FDD835",
+        yellow: {
+          600: "#FDD835",
+        },
         gray: {
           100: "#F5F5F5",
           900: "#212121",
         },
       },
       opacity: {
+        12: ".12",
         16: ".16",
         36: ".36",
+        87: ".87",
       },
     },
   },
   plugins: [
+    reactAriaComponents,
+    tailwindcssAnimate,
     // https://github.com/tailwindlabs/tailwindcss-intellisense/issues/227#issuecomment-1139895799
     ({ addUtilities }) => {
       addUtilities({

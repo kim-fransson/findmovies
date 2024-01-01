@@ -1,5 +1,6 @@
 import reactAriaComponents from "tailwindcss-react-aria-components";
 import tailwindcssAnimate from "tailwindcss-animate";
+import daisyui from "daisyui";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -25,6 +26,7 @@ export default {
   },
   plugins: [
     reactAriaComponents,
+    daisyui,
     tailwindcssAnimate,
     // https://github.com/tailwindlabs/tailwindcss-intellisense/issues/227#issuecomment-1139895799
     ({ addUtilities }) => {
@@ -66,4 +68,8 @@ export default {
       });
     },
   ],
+
+  daisyui: {
+    base: false, // applies background color and foreground color for root element by default
+  },
 };

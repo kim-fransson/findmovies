@@ -1,11 +1,13 @@
-import { genreMovieListHandler, searchMovieHandler } from "../mocks/handlers";
-import App from "./App";
+import { MovieSearch } from "./MovieSearch";
 import type { Meta, StoryObj } from "@storybook/react";
+import {
+  searchMovieHandler,
+  genreMovieListHandler,
+} from "../../../mocks/handlers";
 
-const meta: Meta<typeof App> = {
-  component: App,
+const meta: Meta<typeof MovieSearch> = {
+  component: MovieSearch,
   parameters: {
-    layout: "fullscreen",
     msw: {
       handlers: [searchMovieHandler, genreMovieListHandler],
     },
@@ -14,7 +16,7 @@ const meta: Meta<typeof App> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof App>;
+type Story = StoryObj<typeof MovieSearch>;
 
 export const Playground: Story = {
   args: {},

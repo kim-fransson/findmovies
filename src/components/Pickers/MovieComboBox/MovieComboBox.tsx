@@ -140,7 +140,10 @@ export const MovieItem = (
         <h2 className="md:headline-m text-sm">{props.movie.title}</h2>
         <div className="flex items-center gap-2">
           {getGenres(props.movie, genres).map((genre) => (
-            <div key={genre} className="badge bg-yellow-600 text-gray-900">
+            <div
+              key={genre}
+              className="badge bg-yellow-600 text-gray-900 badge-sm md:badge-md"
+            >
               {genre}
             </div>
           ))}

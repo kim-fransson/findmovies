@@ -5,7 +5,7 @@ export default function App() {
   return (
     <div className="h-dvh bg-black">
       <nav>
-        <div className="py-9 flex gap-16 items-center max-w-7xl mx-auto">
+        <div className="md:py-9 md:px-8 py-5 px-4 md:flex-row flex-col flex md:gap-16 gap-4 md:items-center max-w-7xl mx-auto">
           <Logo />
           <div className="flex-1">
             <MovieSearch />

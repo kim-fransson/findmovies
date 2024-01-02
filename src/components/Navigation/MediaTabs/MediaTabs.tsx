@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const MediaTab = ({ children, id }: PropsWithChildren & { id: string }) => {
   return (
     <Tab
-      className="px-4 relative mb-1 group body outline-none focus-visible:border-yellow-600 border-2 border-transparent"
+      className="cursor-pointer px-4 relative mb-1 group body outline-none focus-visible:border-yellow-600 border-2 border-transparent"
       id={id}
     >
       {({ isSelected }) => (

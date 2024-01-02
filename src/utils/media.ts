@@ -23,9 +23,9 @@ export const getReleaseYear = (media: Media) => {
   return undefined;
 };
 
-export const getPoster = (media: Media) => {
+export const getPoster = (media: Media, size = "w92") => {
   return media.poster_path !== null
-    ? `https://image.tmdb.org/t/p/w92/${media.poster_path}`
+    ? `https://image.tmdb.org/t/p/${size}/${media.poster_path}`
     : undefined;
 };
 

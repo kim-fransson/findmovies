@@ -130,7 +130,7 @@ export const MediaItem = (
   return (
     <ListBoxItem
       {...props}
-      className="flex p-3 text-gray-100 items-center gap-5 cursor-pointer outline-none focus:bg-white/12"
+      className="flex p-3 text-gray-100 md:items-center gap-5 cursor-pointer outline-none focus:bg-white/12"
     >
       <picture
         className={twMerge(
@@ -165,7 +165,7 @@ export const MediaItem = (
             </div>
           ))}
         </div>
-        <span className="body-2 md:inline-block hidden">
+        <span className="md:body-2 text-sm">
           {getReleaseYear(props.media) || "Release Date: To Be Announced"}
         </span>
       </div>

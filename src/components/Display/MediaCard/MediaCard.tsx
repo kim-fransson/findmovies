@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 import StarIcon from "@icons/star-icon.svg?react";
 
 export interface MediaCardProps {
-  media: Movie | TV;
+  media: Media | Movie | TV;
 }
 
 export const MediaCard = (props: MediaCardProps) => {

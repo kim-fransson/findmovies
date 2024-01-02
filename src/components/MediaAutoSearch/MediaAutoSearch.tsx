@@ -1,13 +1,11 @@
-import {
-  MediaComboBox,
-  MediaItem,
-} from "../Pickers/MediaComboBox/MediaComboBox";
+import { MediaComboBox } from "../Pickers/MediaComboBox/MediaComboBox";
 import useSWR from "swr";
 import { useEffect, useMemo, useState } from "react";
 import { useDebounce } from "@uidotdev/usehooks";
-import { Key } from "react-aria-components";
+import { Key, ListBoxItem } from "react-aria-components";
 import { useFilter } from "react-aria";
 import { fetcher, getTitle, isMovie, isTV } from "@/utils";
+import { MediaSearchResult } from "../Display/MediaSearchResult/MediaSearchResult";
 
 // ! still some errors from react-aria
 export const MediaAutoSearch = () => {
@@ -20,6 +18,7 @@ export const MediaAutoSearch = () => {
   });
 
   const [medias, setMedias] = useState<Media[]>([]);
+  const [genres, setGenres] = useState<Genre[]>([]);
 
   const debouncedSearchQuery = useDebounce(fieldState.inputValue, 500);
 
@@ -31,7 +30,9 @@ export const MediaAutoSearch = () => {
     { onSuccess: (data) => setMedias(data.results || []) },
   );
 
-  useSWR<ListGenresResult>("/api/genre/media/list", fetcher);
+  useSWR<ListGenresResult>("/api/genre/media/list", fetcher, {
+    onSuccess: (data) => setGenres(data.genres || []),
+  });
 
   const { contains } = useFilter({ sensitivity: "base" });
 
@@ -85,7 +86,14 @@ export const MediaAutoSearch = () => {
       isLoading={isLoading}
       allowsEmptyCollection={true} // see: https://github.com/adobe/react-spectrum/issues/5234#issuecomment-1809482551
     >
-      {(item) => <MediaItem media={item} textValue={getTitle(item)} />}
+      {(item) => (
+        <ListBoxItem
+          className="focus:bg-white/12 cursor-pointer outline-none"
+          textValue={getTitle(item)}
+        >
+          <MediaSearchResult media={item} genres={genres} />
+        </ListBoxItem>
+      )}
     </MediaComboBox>
   );
 };

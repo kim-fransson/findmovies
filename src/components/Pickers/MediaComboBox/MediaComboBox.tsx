@@ -91,7 +91,7 @@ export const MediaComboBox = (props: MediaComboBoxProps) => {
       </ComboBox>
       {showNoResults && (
         <div
-          className="overflow-auto absolute translate-y-2 fade-in animate-in rounded shadow-lg py-6 px-3
+          className="z-50 overflow-auto absolute translate-y-2 fade-in animate-in rounded shadow-lg py-6 px-3
         text-gray-100 left-0 right-0 bg-gray-900"
         >
           <span className="body-2 text-gray-100">
@@ -102,7 +102,7 @@ export const MediaComboBox = (props: MediaComboBoxProps) => {
       )}
       {props.inputValue && props.isLoading && (
         <div
-          className="h-64 left-0 right-0 absolute translate-y-2 overflow-auto rounded shadow-lg items-center justify-center flex
+          className="z-50 h-64 left-0 right-0 absolute translate-y-2 overflow-auto rounded shadow-lg items-center justify-center flex
         text-gray-100 animate-in fade-in bg-gray-900"
         >
           <span className="loading loading-dots loading-lg scale-150"></span>

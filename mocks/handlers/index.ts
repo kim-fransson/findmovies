@@ -1,2 +1,2 @@
-export * from "./genreMovieListHandler";
-export * from "./searchMovieHandler";
+export * from "./genreMediaListHandler";
+export * from "./searchMultiHandler";

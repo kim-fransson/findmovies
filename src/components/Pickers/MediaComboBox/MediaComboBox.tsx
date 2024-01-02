@@ -14,13 +14,21 @@ import {
 import SearchIcon from "@icons/search-icon.svg?react";
 import { useContext, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { fetcher, getGenres, getPoster, getReleaseYear } from "@/utils";
+import {
+  fetcher,
+  getGenres,
+  getPoster,
+  getReleaseYear,
+  getTitle,
+  isMovie,
+  isTV,
+} from "@/utils";
 import useSWR from "swr";
 import { useDebounce } from "@uidotdev/usehooks";
 
-export interface MovieComboBoxProps
-  extends Omit<ComboBoxProps<Movie>, "children"> {
-  children: React.ReactNode | ((item: Movie) => React.ReactNode);
+export interface MediaComboBoxProps
+  extends Omit<ComboBoxProps<Media>, "children"> {
+  children: React.ReactNode | ((item: Media) => React.ReactNode);
   isLoading: boolean;
   allowsEmptyCollection: boolean;
 }
@@ -46,14 +54,14 @@ const PopoverWithListBox = ({
       className="max-h-96 w-[--trigger-width] overflow-auto rounded shadow-lg
         entering:animate-in entering:fade-in exiting:animate-out exiting:fade-out bg-gray-900"
     >
-      <ListBox<Movie> className="outline-none bg-gray-900">
-        {(item) => <MovieItem movie={item} textValue={item.title} />}
+      <ListBox<Media> className="outline-none bg-gray-900">
+        {(item) => <MediaItem media={item} textValue={getTitle(item)} />}
       </ListBox>
     </Popover>
   );
 };
 
-export const MovieComboBox = (props: MovieComboBoxProps) => {
+export const MediaComboBox = (props: MediaComboBoxProps) => {
   const containerRef = useRef(null);
 
   const debouncedInputValue = useDebounce(props.inputValue, 650);
@@ -87,7 +95,8 @@ export const MovieComboBox = (props: MovieComboBoxProps) => {
         text-gray-100 left-0 right-0 bg-gray-900"
         >
           <span className="body-2 text-gray-100">
-            Sorry, no movies matched your search. Please try a different phrase.
+            Looks like we didn't find any movies or TV shows for that search.
+            Try a different phrase!
           </span>
         </div>
       )}
@@ -103,17 +112,18 @@ export const MovieComboBox = (props: MovieComboBoxProps) => {
   );
 };
 
-export const MovieItem = (
+export const MediaItem = (
   props: ListBoxItemProps & {
-    movie: Movie;
+    media: Media;
   },
 ) => {
+  const { poster_path } = props.media;
   const [isLoadingPoster, setIsLoadingPoster] = useState(
-    props.movie.poster_path ? true : false,
+    poster_path ? true : false,
   );
 
   const { data: { genres } = { genres: [] } } = useSWR<ListGenresResult>(
-    "/api/genre/movie/list",
+    "/api/genre/media/list",
     fetcher,
   );
 
@@ -124,22 +134,29 @@ export const MovieItem = (
     >
       <picture
         className={twMerge(
-          "w-14 h-20 rounded lg:block hidden overflow-hidden",
-          isLoadingPoster ? "skeleton" : "gradient",
+          "w-14 h-20 flex-shrink-0 flex-grow-0 rounded  overflow-hidden",
+          isLoadingPoster ? "skeleton" : "",
+          poster_path ? "" : "gradient",
         )}
       >
-        {props.movie.poster_path && (
+        {poster_path && (
           <img
-            src={getPoster(props.movie)}
+            src={getPoster(props.media)}
             className="max-w-full h-auto"
             onLoad={() => setIsLoadingPoster(false)}
           />
         )}
       </picture>
       <div className="flex flex-col gap-2">
-        <h2 className="md:headline-m text-sm">{props.movie.title}</h2>
-        <div className="flex items-center gap-2">
-          {getGenres(props.movie, genres).map((genre) => (
+        <h2 className="md:headline-m text-sm">
+          {isMovie(props.media)
+            ? props.media.title
+            : isTV(props.media)
+              ? props.media.name
+              : ""}
+        </h2>
+        <div className="flex items-center gap-2 flex-wrap">
+          {getGenres(props.media, genres).map((genre) => (
             <div
               key={genre}
               className="badge bg-yellow-600 text-gray-900 badge-sm md:badge-md"
@@ -149,7 +166,7 @@ export const MovieItem = (
           ))}
         </div>
         <span className="body-2 md:inline-block hidden">
-          {getReleaseYear(props.movie) || "Release Date: To Be Announced"}
+          {getReleaseYear(props.media) || "Release Date: To Be Announced"}
         </span>
       </div>
     </ListBoxItem>

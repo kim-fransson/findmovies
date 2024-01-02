@@ -1,4 +1,4 @@
-import { genreMovieListHandler, searchMovieHandler } from "../mocks/handlers";
+import { genreMediaListHandler, searchMultiHandler } from "../mocks/handlers";
 import App from "./App";
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -7,7 +7,7 @@ const meta: Meta<typeof App> = {
   parameters: {
     layout: "fullscreen",
     msw: {
-      handlers: [searchMovieHandler, genreMovieListHandler],
+      handlers: [searchMultiHandler, genreMediaListHandler],
     },
   },
   args: {},

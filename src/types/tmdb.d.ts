@@ -1,32 +1,42 @@
-type MovieSearchResult = {
+interface MultiSearchResult {
   page: number;
-  results: Movie[];
+  results: Media[];
   total_pages: number;
   total_results: number;
-};
+}
 
-type Movie = {
-  poster_path: string;
+interface Media {
   adult: boolean;
-  overview: string;
-  release_date: string;
-  genre_ids: number[];
+  backdrop_path: string | null;
   id: number;
-  original_title: string;
   original_language: string;
-  title: string;
-  backdrop_path: string;
+  overview: string;
+  poster_path: string | null;
+  media_type: "movie" | "tv";
+  genre_ids: number[];
   popularity: number;
-  vote_count: number;
-  video: boolean;
   vote_average: number;
-};
+  vote_count: number;
+}
 
-type ListGenresResult = {
+interface Movie extends Media {
+  title: string;
+  original_title: string;
+  release_date: string;
+  video: boolean;
+}
+
+interface TV extends Media {
+  name: string;
+  original_name: string;
+  first_air_date: string;
+  origin_country: string[];
+}
+
+interface ListGenresResult {
   genres: Genre[];
-};
-
-type Genre = {
+}
+interface Genre {
   id: number;
   name: string;
-};
+}

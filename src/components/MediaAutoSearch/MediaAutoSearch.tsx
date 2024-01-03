@@ -4,8 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 import { useDebounce } from "@uidotdev/usehooks";
 import { Key, ListBoxItem } from "react-aria-components";
 import { useFilter } from "react-aria";
-import { fetcher, getTitle, isMovie, isTV } from "@/utils";
+import { fetcher, generateDummyList, getTitle, isMovie, isTV } from "@/utils";
 import { MediaSearchResult } from "../Display/MediaSearchResult/MediaSearchResult";
+import { twMerge } from "tailwind-merge";
 
 // ! still some errors from react-aria
 export const MediaAutoSearch = () => {
@@ -78,20 +79,27 @@ export const MediaAutoSearch = () => {
   return (
     <MediaComboBox
       aria-label="pick a movie"
-      items={filteredMedias}
+      items={isLoading ? (generateDummyList(5) as Media[]) : filteredMedias}
       selectedKey={fieldState.selectedMediaId}
       inputValue={fieldState.inputValue}
       onSelectionChange={onSelectionChange}
       onInputChange={onInputChange}
-      isLoading={isLoading}
+      isReadOnly={isLoading}
       allowsEmptyCollection={true} // see: https://github.com/adobe/react-spectrum/issues/5234#issuecomment-1809482551
     >
       {(item) => (
         <ListBoxItem
-          className="focus:bg-white/12 cursor-pointer outline-none"
+          className={twMerge(
+            "outline-none",
+            !isLoading ? "focus:bg-white/12 cursor-pointer" : "",
+          )}
           textValue={getTitle(item)}
         >
-          <MediaSearchResult media={item} genres={genres} />
+          <MediaSearchResult
+            media={item}
+            genres={genres}
+            isLoading={isLoading}
+          />
         </ListBoxItem>
       )}
     </MediaComboBox>

@@ -5,6 +5,13 @@ interface MultiSearchResult {
   total_results: number;
 }
 
+interface TrendingMovieResult {
+  page: number;
+  results: Movie[];
+  total_pages: number;
+  total_results: number;
+}
+
 interface Media {
   adult: boolean;
   backdrop_path: string | null;

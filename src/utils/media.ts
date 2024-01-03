@@ -7,7 +7,7 @@ export const isTV = (media?: Media): media is TV => {
 };
 
 export const getTitle = (media: Media) => {
-  return isMovie(media) ? media.title : isTV(media) ? media.name : "";
+  return isMovie(media) ? media.title : isTV(media) ? media.name : "title";
 };
 
 export const getReleaseYear = (media: Media) => {
@@ -35,4 +35,10 @@ export const getGenres = (media: Media, genres: Genre[]) => {
     .filter((genre) => genre !== undefined) as string[];
 
   return res;
+};
+
+export const generateDummyList = (length = 20) => {
+  return Array.from({ length }, (_, i) => ({
+    id: i + 1,
+  }));
 };

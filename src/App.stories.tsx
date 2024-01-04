@@ -17,6 +17,7 @@ const meta: Meta<typeof App> = {
         genreMediaListHandler,
         trendingMovieHandler,
         trendingTVHandler,
+        trendingTVHandler,
       ],
     },
   },

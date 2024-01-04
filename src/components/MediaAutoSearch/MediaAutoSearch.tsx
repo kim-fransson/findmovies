@@ -18,22 +18,25 @@ export const MediaAutoSearch = () => {
     inputValue: "",
   });
 
-  const [medias, setMedias] = useState<Media[]>([]);
-  const [genres, setGenres] = useState<Genre[]>([]);
-
   const debouncedSearchQuery = useDebounce(fieldState.inputValue, 500);
 
-  const { isLoading, mutate } = useSWR<MultiSearchResult>(
+  const {
+    data: mediaData,
+    isLoading,
+    mutate,
+  } = useSWR<MultiSearchResult>(
     debouncedSearchQuery
       ? `/api/search/multi?query=${debouncedSearchQuery}`
       : null,
     fetcher,
-    { onSuccess: (data) => setMedias(data.results || []) },
   );
+  const medias = useMemo(() => mediaData?.results || [], [mediaData]);
 
-  useSWR<ListGenresResult>("/api/genre/media/list", fetcher, {
-    onSuccess: (data) => setGenres(data.genres || []),
-  });
+  const { data: genresData } = useSWR<ListGenresResult>(
+    "/api/genre/media/list",
+    fetcher,
+    {},
+  );
 
   const { contains } = useFilter({ sensitivity: "base" });
 
@@ -97,7 +100,7 @@ export const MediaAutoSearch = () => {
         >
           <MediaSearchResult
             media={item}
-            genres={genres}
+            genres={genresData?.genres || []}
             isLoading={isLoading}
           />
         </ListBoxItem>

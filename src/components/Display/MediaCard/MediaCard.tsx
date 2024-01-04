@@ -25,10 +25,10 @@ export const MediaCard = (props: MediaCardProps) => {
   }
 
   return (
-    <div className="flex flex-col w-44 shrink-0 grow-0 gap-4">
+    <div className="flex flex-col w-44 shrink-0 grow-0 gap-4 group">
       <div
         className={twMerge(
-          "overflow-hidden relative rounded-lg h-64 w-44",
+          "overflow-hidden relative rounded-t-lg rounded-br-lg h-64 w-44 group-hover:yellow-shadow transition-shadow",
           isLoadingPoster ? "skeleton" : "",
           media.poster_path ? "" : "gradient",
         )}
@@ -38,6 +38,7 @@ export const MediaCard = (props: MediaCardProps) => {
             src={getPoster(media, "w185")}
             className="max-w-full h-auto"
             onLoad={() => setIsLoadingPoster(false)}
+            loading="lazy"
           />
         )}
         <div className="absolute rounded-tr-lg gap-2 p-2 body flex items-center left-0 bottom-0 bg-black">

@@ -34,6 +34,9 @@ export default {
         ".gradient": {
           background: "linear-gradient(130deg, #FFEE58 0%, #FF8F00 104.33%)",
         },
+        ".yellow-shadow": {
+          "box-shadow": "0 0 12px #FDD835",
+        },
         ".headline-xl": {
           "font-weight": "600",
           "font-size": "40px",
@@ -64,6 +67,13 @@ export default {
           "font-size": "13px",
           "letter-spacing": "0.4px",
           "text-transform": "uppercase",
+        },
+        ".scrollbar-hide::-webkit-scrollbar": {
+          display: "none" /* (Chrome, Safari and Opera) */,
+        },
+        ".scrollbar-hide": {
+          "-ms-overflow-style": "none" /* IE and Edge */,
+          "scrollbar-width": "none" /* Firefox */,
         },
       });
     },

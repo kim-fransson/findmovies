@@ -1,6 +1,8 @@
 import { PropsWithChildren } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-aria-components";
 import { motion } from "framer-motion";
+import { TrendingMovies } from "@/components/Collections/TrendingMovies/TrendingMovies";
+import { TrendingSeries } from "@/components/Collections/TrendingSeries/TrendingSeries";
 
 const MediaTab = ({ children, id }: PropsWithChildren & { id: string }) => {
   return (
@@ -25,7 +27,7 @@ const MediaTab = ({ children, id }: PropsWithChildren & { id: string }) => {
 
 export const MediaTabs = () => {
   return (
-    <Tabs className="flex flex-col gap-8">
+    <Tabs className="flex flex-col">
       <TabList
         className="flex border-b-white/12 border-b"
         aria-label="Featured today"
@@ -33,8 +35,12 @@ export const MediaTabs = () => {
         <MediaTab id="movies">Movies</MediaTab>
         <MediaTab id="series">Series</MediaTab>
       </TabList>
-      <TabPanel id="movies">Movies</TabPanel>
-      <TabPanel id="series">Series</TabPanel>
+      <TabPanel id="movies">
+        <TrendingMovies />
+      </TabPanel>
+      <TabPanel id="series">
+        <TrendingSeries />
+      </TabPanel>
     </Tabs>
   );
 };

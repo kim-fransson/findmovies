@@ -5,9 +5,9 @@ interface MultiSearchResult {
   total_results: number;
 }
 
-interface TrendingMovieResult {
+interface TrendingResult {
   page: number;
-  results: Movie[];
+  results: Media[];
   total_pages: number;
   total_results: number;
 }

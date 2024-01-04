@@ -2,12 +2,14 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 import axios from "axios";
 
 export default async function handler(
-  _request: VercelRequest,
+  request: VercelRequest,
   response: VercelResponse,
 ) {
+  const { page = 1 } = request.query;
+
   try {
     const res = await axios.get(
-      `${process.env.TMDB_BASE_URL}/trending/tv/day?api_key=${process.env.TMDB_API_KEY}`,
+      `${process.env.TMDB_BASE_URL}/trending/tv/day?page=${page}&api_key=${process.env.TMDB_API_KEY}`,
     );
 
     response.status(res.status).json(res.data);

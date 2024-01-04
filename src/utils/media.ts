@@ -42,3 +42,23 @@ export const generateDummyList = (length = 20) => {
     id: i + 1,
   }));
 };
+
+export const filterUniqueMedias = (data?: TrendingResult[]) => {
+  if (!data) {
+    return [];
+  }
+
+  const uniqueIds = new Set();
+  return data.reduce((accumulator, current) => {
+    return accumulator.concat(
+      current.results.filter((media) => {
+        if (uniqueIds.has(media.id)) {
+          return false;
+        } else {
+          uniqueIds.add(media.id);
+          return true;
+        }
+      }),
+    );
+  }, [] as Media[]);
+};

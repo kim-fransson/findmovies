@@ -3,6 +3,7 @@ import {
   searchMultiHandler,
   trendingMovieHandler,
   trendingTVHandler,
+  upcomingMoviesHandler,
 } from "../mocks/handlers";
 import App from "./App";
 import type { Meta, StoryObj } from "@storybook/react";
@@ -17,7 +18,7 @@ const meta: Meta<typeof App> = {
         genreMediaListHandler,
         trendingMovieHandler,
         trendingTVHandler,
-        trendingTVHandler,
+        upcomingMoviesHandler,
       ],
     },
   },

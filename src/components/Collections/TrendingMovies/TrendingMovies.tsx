@@ -1,8 +1,8 @@
-import { MediaTrendingList } from "../MediaTrendingList";
+import { MediaInfinityList } from "../MediaInfinityList";
 
 export const TrendingMovies = () => {
   return (
-    <MediaTrendingList
+    <MediaInfinityList
       apiEndpoint="/api/trending/movie/day"
       ariaLabel="todays trending movies"
     />

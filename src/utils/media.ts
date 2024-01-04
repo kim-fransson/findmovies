@@ -1,5 +1,7 @@
 export const isMovie = (media?: Media): media is Movie => {
-  return media !== undefined && media.media_type === "movie";
+  return (
+    media !== undefined && (media.media_type === "movie" || "title" in media)
+  );
 };
 
 export const isTV = (media?: Media): media is TV => {

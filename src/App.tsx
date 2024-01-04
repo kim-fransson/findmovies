@@ -1,5 +1,6 @@
 import Logo from "@icons/logo.svg?react";
 import { MediaAutoSearch, MediaTabs } from "@/components";
+import { UpcomingMovies } from "./components/Collections/UpcomingMovies/UpcomingMovies";
 
 export default function App() {
   return (
@@ -12,9 +13,14 @@ export default function App() {
           </div>
         </div>
       </nav>
-      <div className="lg:mt-16 md:mt-8 mt-4 flex flex-col gap-5 lg:-mr-32 md:-mr-8 -mr-4">
-        <h2 className="headline-l text-yellow-600">Featured Today</h2>
+      <div className="lg:my-16 md:my-8 my-4 lg:-mr-32 md:-mr-8 -mr-4">
+        <h2 className="headline-l mb-5 text-yellow-600">Featured Today</h2>
         <MediaTabs />
+
+        <h2 className="headline-l lg:mt-16 md:mt-8 my-5 text-yellow-600">
+          Next on the Big Screen
+        </h2>
+        <UpcomingMovies />
       </div>
     </div>
   );

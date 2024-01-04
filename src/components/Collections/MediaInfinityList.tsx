@@ -1,4 +1,4 @@
-// MediaTrendingList.jsx
+// MediaInfinityList.jsx
 import { MediaCard } from "@/components/Display/MediaCard/MediaCard";
 import {
   fetcher,
@@ -14,7 +14,7 @@ import useSWRInfinite from "swr/infinite";
 
 // todo: infinite loading indicator?
 // ? no fetching when there is no more data? (edge case) (need to check swr cache)
-export const MediaTrendingList = ({
+export const MediaInfinityList = ({
   apiEndpoint,
   ariaLabel,
 }: {

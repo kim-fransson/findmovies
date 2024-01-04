@@ -5,11 +5,11 @@ export default async function handler(
   request: VercelRequest,
   response: VercelResponse,
 ) {
-  const { page = 1 } = request.query;
+  const { id } = request.query;
 
   try {
     const res = await axios.get(
-      `${process.env.TMDB_BASE_URL}/movie/upcoming?page=${page}&api_key=${process.env.TMDB_API_KEY}`,
+      `${process.env.TMDB_BASE_URL}/movie/${id}?api_key=${process.env.TMDB_API_KEY}`,
     );
 
     response.status(res.status).json(res.data);

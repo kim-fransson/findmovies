@@ -9,7 +9,7 @@ export default async function handler(
 
   try {
     const res = await axios.get(
-      `${process.env.TMDB_BASE_URL}/movie/${id}?api_key=${process.env.TMDB_API_KEY}`,
+      `${process.env.TMDB_BASE_URL}/movie/${id}?append_to_response=credits&api_key=${process.env.TMDB_API_KEY}`,
     );
 
     response.status(res.status).json(res.data);

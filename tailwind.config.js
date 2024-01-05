@@ -34,6 +34,13 @@ export default {
         ".gradient": {
           background: "linear-gradient(130deg, #FFEE58 0%, #FF8F00 104.33%)",
         },
+        ".gradient-gray": {
+          background:
+            "linear-gradient(90deg, rgba(255, 255, 255, 0.08) 3.84%, rgba(0, 0, 0, 0.00) 46.32%, rgba(255, 255, 255, 0.08) 95.33%)",
+        },
+        ".banner-mask": {
+          "clip-path": "polygon(5% 0, 100% 0, 100% 100%, 0 100%)",
+        },
         ".yellow-shadow": {
           "box-shadow": "0 0 12px #FDD835",
         },
@@ -67,6 +74,11 @@ export default {
           "font-size": "13px",
           "letter-spacing": "0.4px",
           "text-transform": "uppercase",
+        },
+        ".caption-2": {
+          "font-size": "15px",
+          "letter-spacing": "0.25px",
+          "font-weight": "bold",
         },
         ".scrollbar-hide::-webkit-scrollbar": {
           display: "none" /* (Chrome, Safari and Opera) */,

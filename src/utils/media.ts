@@ -25,7 +25,23 @@ export const getReleaseYear = (media: Media) => {
   return undefined;
 };
 
-export const getPoster = (media: Media, size = "w92") => {
+export const getMovieReleaseYear = (movie: MovieDetails | Movie) => {
+  const releaseYear = movie.release_date;
+  if (releaseYear) {
+    const year = parseInt(releaseYear.split("-")[0]);
+    return isNaN(year) ? undefined : year.toString();
+  }
+  return undefined;
+};
+
+export const getFormattedRuntime = (movie: MovieDetails): string => {
+  const minutes = movie.runtime;
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+  return `${hours}h ${remainingMinutes}m`;
+};
+
+export const getPoster = (media: Media | MovieDetails, size = "w92") => {
   return media.poster_path !== null
     ? `https://image.tmdb.org/t/p/${size}/${media.poster_path}`
     : undefined;

@@ -23,10 +23,12 @@
   },
   "dependencies": {
     "@fontsource-variable/montserrat": "5.0.17",
+    "@types/luxon": "3.3.8",
     "@uidotdev/usehooks": "2.4.1",
     "@vercel/node": "3.0.14",
     "axios": "1.6.3",
     "framer-motion": "10.17.0",
+    "luxon": "3.4.4",
     "react": "18.2.0",
     "react-aria": "3.31.0",
     "react-aria-components": "1.0.0",

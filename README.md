@@ -1,7 +1,15 @@
-# GifTok Project (React + ReactAria + Tailwindcss)
+# FindMovies Project (React + ReactAria + Tailwindcss)
 
 Project designed from [BigDevSoon.me](https://bigdevsoon.me/)
 
-Live demo 
+Live demo https://findmovies-iota.vercel.app/
 
 ## Preview
+
+### Desktop
+
+<img src="./previews/desktop.png" alt="desktop" width="750"/>
+
+### Tablet
+
+<img src="./previews/tablet.png" alt="desktop" width="750"/>

@@ -1,5 +1,6 @@
 #
 .env
+vercel.local.json
 
 # Logs
 logs

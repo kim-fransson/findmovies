@@ -3,13 +3,13 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { MovieDetails } from "./pages/MovieDetails/MovieDetails";
-import { TVDetails } from "./pages/TVDetails/TVDetails";
+import { ErrorPage, MovieDetails, TVDetails } from "./pages";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "movies/:id",

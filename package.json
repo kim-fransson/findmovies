@@ -10,7 +10,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "vercel": "vercel dev",
+    "vercel": "vercel dev  --local-config vercel.local.json",
     "build-storybook": "storybook build",
     "prepare": "husky install",
     "commit": "cz"

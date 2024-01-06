@@ -4,10 +4,9 @@ import StarIcon from "@icons/star-icon.svg?react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { DateTime } from "luxon";
-import { Link, useParams } from "react-router-dom";
-import Logo from "@icons/logo.svg?react";
-import { MediaAutoSearch } from "@/components";
+import { useParams } from "react-router-dom";
 import { DetailsSkeleton } from "../DetailsSkeleton";
+import { BaseLayout } from "@/layouts/BaseLayout";
 
 export const TVDetails = () => {
   const { id: tvID } = useParams();
@@ -21,17 +20,7 @@ export const TVDetails = () => {
   );
 
   return (
-    <div className="min-h-dvh bg-black">
-      <nav className="lg:px-32 md:px-8 px-4">
-        <div className="lg:flex-row flex-col lg:py-9 py-5 flex lg:gap-16 gap-4 lg:items-center">
-          <Link to="/" className="cursor-pointer">
-            <Logo />
-          </Link>
-          <div className="flex-1">
-            <MediaAutoSearch />
-          </div>
-        </div>
-      </nav>
+    <BaseLayout>
       {!isLoading && tv ? (
         <>
           <div className="gradient-gray lg:px-32 md:px-8 md:py-12 p-4 flex md:flex-row flex-col md:items-center md:gap-8 gap-4">
@@ -149,6 +138,6 @@ export const TVDetails = () => {
       ) : (
         <DetailsSkeleton />
       )}
-    </div>
+    </BaseLayout>
   );
 };

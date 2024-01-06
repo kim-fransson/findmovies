@@ -5,7 +5,7 @@ import { BaseLayout } from "./layouts/BaseLayout";
 export default function App() {
   return (
     <BaseLayout>
-      <div className="lg:my-16 md:my-8 my-4 lg:-mr-32 md:-mr-8 -mr-4">
+      <div className="lg:px-32 md:px-8 px-4 lg:my-16 md:my-8 my-4 lg:-mr-32 md:-mr-8 -mr-4">
         <h2 className="headline-l mb-5 text-yellow-600">Featured Today</h2>
         <MediaTabs />
 

@@ -10,11 +10,10 @@ import Logo from "@icons/logo.svg?react";
 
 export const MovieDetails = () => {
   const { id: movieID } = useParams();
-  const {
-    data: movie,
-    isLoading,
-    error,
-  } = useSWR<MovieDetails>(`/api/movie?id=${movieID}`, fetcher);
+  const { data: movie } = useSWR<MovieDetails>(
+    `/api/movie?id=${movieID}`,
+    fetcher,
+  );
 
   const [isLoadingPoster, setIsLoadingPoster] = useState(
     movie?.poster_path ? true : false,

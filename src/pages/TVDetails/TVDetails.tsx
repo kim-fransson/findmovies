@@ -10,11 +10,7 @@ import { MediaAutoSearch } from "@/components";
 
 export const TVDetails = () => {
   const { id: tvID } = useParams();
-  const {
-    data: tv,
-    isLoading,
-    error,
-  } = useSWR<SeriesDetails>(`/api/tv?id=${tvID}`, fetcher);
+  const { data: tv } = useSWR<SeriesDetails>(`/api/tv?id=${tvID}`, fetcher);
 
   const [isLoadingPoster, setIsLoadingPoster] = useState(
     tv?.poster_path ? true : false,

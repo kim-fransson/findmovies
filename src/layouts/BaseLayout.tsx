@@ -17,7 +17,7 @@ export const BaseLayout = ({ children }: PropsWithChildren) => {
         </div>
       </nav>
       <main className="overflow-hidden flex-1">{children}</main>
-      <footer className="mt-60 flex lg:flex-row flex-col lg:justify-center items-center px-8 py-4 lg:gap-8 gap-4">
+      <footer className="mt-[420px] flex lg:flex-row flex-col lg:justify-center items-center px-8 py-4 lg:gap-8 gap-4">
         <div className="flex lg:flex-row flex-col items-center gap-2">
           <span className="select-none rounded-lg bg-[#01b4e4] px-2 py-1 text-gray-100 body-2">
             This product uses the TMDB API but is not endorsed or certified by

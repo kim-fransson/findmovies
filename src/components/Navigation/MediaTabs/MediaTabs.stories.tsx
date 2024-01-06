@@ -1,3 +1,7 @@
+import {
+  trendingMovieHandler,
+  trendingTVHandler,
+} from "../../../../mocks/handlers";
 import { MediaTabs } from "./MediaTabs";
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -5,7 +9,7 @@ const meta: Meta<typeof MediaTabs> = {
   component: MediaTabs,
   parameters: {
     msw: {
-      handlers: [],
+      handlers: [trendingMovieHandler, trendingTVHandler],
     },
   },
   args: {},

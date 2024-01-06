@@ -87,7 +87,6 @@ export const MediaAutoSearch = () => {
       inputValue={fieldState.inputValue}
       onSelectionChange={onSelectionChange}
       onInputChange={onInputChange}
-      isReadOnly={isLoading}
       allowsEmptyCollection={true} // see: https://github.com/adobe/react-spectrum/issues/5234#issuecomment-1809482551
     >
       {(item) => (
@@ -97,6 +96,7 @@ export const MediaAutoSearch = () => {
             !isLoading ? "focus:bg-white/12 cursor-pointer" : "",
           )}
           textValue={getTitle(item)}
+          href={`/${isMovie(item) ? "movies" : "series"}/${item.id}`}
         >
           <MediaSearchResult
             media={item}

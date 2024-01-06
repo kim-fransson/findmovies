@@ -4,11 +4,12 @@ import StarIcon from "@icons/star-icon.svg?react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { DateTime } from "luxon";
+import { Link, useParams } from "react-router-dom";
+import { MediaAutoSearch } from "@/components";
+import Logo from "@icons/logo.svg?react";
 
-// todo: what to replace with awards
-// todo: yablet/mobile layout
 export const MovieDetails = () => {
-  const movieID = "121";
+  const { id: movieID } = useParams();
   const {
     data: movie,
     isLoading,
@@ -21,7 +22,17 @@ export const MovieDetails = () => {
 
   return (
     movie && (
-      <div>
+      <div className="min-h-dvh bg-black">
+        <nav className="lg:px-32 md:px-8 px-4">
+          <div className="lg:flex-row flex-col lg:py-9 py-5 flex lg:gap-16 gap-4 lg:items-center">
+            <Link to="/" className="cursor-pointer">
+              <Logo />
+            </Link>
+            <div className="flex-1">
+              <MediaAutoSearch />
+            </div>
+          </div>
+        </nav>
         <div className="gradient-gray lg:px-32 md:px-8 md:py-12 p-4 flex md:flex-row flex-col md:items-center md:gap-8 gap-4">
           <div className="flex flex-col md:gap-3 gap-1">
             <span className="body font-bold uppercase text-yellow-600">
@@ -73,15 +84,6 @@ export const MovieDetails = () => {
           </div>
 
           <div className="flex-1 flex flex-col items-start gap-6">
-            {/* <div className="hidden md:flex border bg-yellow-600 justify-start items-center body font-semibold gap-2.5 border-yellow-600 rounded-lg overflow-hidden">
-              <span className="py-2.5 pl-4 w-10"></span>
-              <div className="flex-1 pl-4 p-2.5 bg-black banner-mask">
-                {movie.tagline.charAt(movie.tagline.length - 1) === "."
-                  ? movie.tagline.substring(0, movie.tagline.length - 1)
-                  : movie.tagline}
-              </div>
-            </div> */}
-
             <div className="flex flex-wrap gap-4">
               {movie.genres.map((genre) => (
                 <span
@@ -96,50 +98,64 @@ export const MovieDetails = () => {
             <p className="body">{movie.overview}</p>
 
             <div className="body capitalize grid gap-3">
-              <div>
-                <span className="text-gray-100/60 mr-1">Director:</span>
-                <span>
-                  {movie.credits.crew
-                    .filter((crew) => crew.job.toLowerCase() === "director")
-                    .map((crew) => crew.name)
-                    .join(", ")}
-                </span>
-              </div>
-              <div>
-                <span className="text-gray-100/60 mr-1">Screenplay:</span>
-                <span>
-                  {movie.credits.crew
-                    .filter((crew) => crew.job.toLowerCase() === "screenplay")
-                    .map((crew) => crew.name)
-                    .join(", ")}
-                </span>
-              </div>
-              <div>
-                <span className="text-gray-100/60 mr-1">Stars:</span>
-                <span>
-                  {movie.credits.cast
-                    .slice(0, 2)
-                    .map((actor) => actor.name)
-                    .join(", ")}
-                </span>
-              </div>
-              <div>
-                <span className="text-gray-100/60 mr-1">
-                  Countries of Origin:
-                </span>
-                <span>
-                  {movie.production_countries
-                    .map((country) => country.name)
-                    .join(", ")}
-                </span>
-              </div>
+              {movie.credits.crew.find(
+                (crew) => crew.job.toLowerCase() === "director",
+              ) && (
+                <div>
+                  <span className="text-gray-100/60 mr-1">Director:</span>
+                  <span>
+                    {movie.credits.crew
+                      .filter((crew) => crew.job.toLowerCase() === "director")
+                      .map((crew) => crew.name)
+                      .join(", ")}
+                  </span>
+                </div>
+              )}
+              {movie.credits.crew.find(
+                (crew) => crew.job.toLowerCase() === "screenplay",
+              ) && (
+                <div>
+                  <span className="text-gray-100/60 mr-1">Screenplay:</span>
+                  <span>
+                    {movie.credits.crew
+                      .filter((crew) => crew.job.toLowerCase() === "screenplay")
+                      .map((crew) => crew.name)
+                      .join(", ")}
+                  </span>
+                </div>
+              )}
+              {movie.credits.cast.length > 0 && (
+                <div>
+                  <span className="text-gray-100/60 mr-1">Stars:</span>
+                  <span>
+                    {movie.credits.cast
+                      .slice(0, 2)
+                      .map((actor) => actor.name)
+                      .join(", ")}
+                  </span>
+                </div>
+              )}
+              {movie.production_countries.length > 0 && (
+                <div>
+                  <span className="text-gray-100/60 mr-1">
+                    Countries of Origin:
+                  </span>
+                  <span>
+                    {movie.production_countries
+                      .map((country) => country.name)
+                      .join(", ")}
+                  </span>
+                </div>
+              )}
               <div>
                 <span className="text-gray-100/60 mr-1">Release date:</span>
                 <span>
-                  {DateTime.fromFormat(
-                    movie.release_date,
-                    "yyyy-MM-dd",
-                  ).toLocaleString(DateTime.DATE_FULL)}
+                  {movie.release_date
+                    ? DateTime.fromFormat(
+                        movie.release_date,
+                        "yyyy-MM-dd",
+                      ).toLocaleString(DateTime.DATE_FULL)
+                    : "Coming soon"}
                 </span>
               </div>
             </div>

@@ -4,7 +4,7 @@ import { UpcomingMovies } from "./components/Collections/UpcomingMovies/Upcoming
 
 export default function App() {
   return (
-    <div className="h-dvh bg-black lg:px-32 md:px-8 px-4">
+    <div className="min-h-dvh bg-black lg:px-32 md:px-8 px-4">
       <nav>
         <div className="mx-auto lg:flex-row flex-col lg:py-9 py-5 flex lg:gap-16 gap-4 lg:items-center">
           <Logo />

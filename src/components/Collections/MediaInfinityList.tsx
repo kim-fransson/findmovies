@@ -5,6 +5,7 @@ import {
   filterUniqueMedias,
   generateDummyList,
   getTitle,
+  isMovie,
 } from "@/utils";
 import { useDebounce } from "@uidotdev/usehooks";
 import { motion } from "framer-motion";
@@ -12,8 +13,6 @@ import { UIEvent, useEffect, useState } from "react";
 import { ListBox, ListBoxItem } from "react-aria-components";
 import useSWRInfinite from "swr/infinite";
 
-// todo: infinite loading indicator?
-// ? no fetching when there is no more data? (edge case) (need to check swr cache)
 export const MediaInfinityList = ({
   apiEndpoint,
   ariaLabel,
@@ -85,6 +84,7 @@ export const MediaInfinityList = ({
           {(item) => (
             <ListBoxItem
               textValue={getTitle(item)}
+              href={`/${isMovie(item) ? "movies" : "series"}/${item.id}`}
               className="outline-none cursor-pointer border-transparent p-1 rounded-lg border-2 focus-visible:border-yellow-600"
             >
               <motion.div whileHover={{ y: -16 }}>

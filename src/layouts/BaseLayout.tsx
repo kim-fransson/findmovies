@@ -5,7 +5,7 @@ import { MediaAutoSearch } from "@/components";
 
 export const BaseLayout = ({ children }: PropsWithChildren) => {
   return (
-    <div className="min-h-dvh bg-black">
+    <div className="min-h-dvh bg-black flex flex-col">
       <nav className="lg:px-32 md:px-8 px-4">
         <div className="mx-auto lg:flex-row flex-col lg:py-9 py-5 flex lg:gap-16 gap-4 lg:items-center">
           <Link to="/" className="cursor-pointer">
@@ -16,7 +16,7 @@ export const BaseLayout = ({ children }: PropsWithChildren) => {
           </div>
         </div>
       </nav>
-      <main className="overflow-hidden">{children}</main>
+      <main className="overflow-hidden flex-1">{children}</main>
       <footer className="mt-60 flex lg:flex-row flex-col lg:justify-center items-center px-8 py-4 lg:gap-8 gap-4">
         <div className="flex lg:flex-row flex-col items-center gap-2">
           <span className="select-none rounded-lg bg-[#01b4e4] px-2 py-1 text-gray-100 body-2">

@@ -35,7 +35,7 @@ export const MediaCard = (props: MediaCardProps) => {
       >
         {media.poster_path && (
           <img
-            src={getPoster(media, "w185")}
+            src={getPoster(media.poster_path, "w185")}
             className="max-w-full h-auto"
             onLoad={() => setIsLoadingPoster(false)}
             loading="lazy"

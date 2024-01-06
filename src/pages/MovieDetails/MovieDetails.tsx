@@ -1,9 +1,4 @@
-import {
-  fetcher,
-  getFormattedRuntime,
-  getMovieReleaseYear,
-  getPoster,
-} from "@/utils";
+import { fetcher, getFormattedRuntime, getYear, getPoster } from "@/utils";
 import useSWR from "swr";
 import StarIcon from "@icons/star-icon.svg?react";
 import { useState } from "react";
@@ -28,7 +23,7 @@ export const MovieDetails = () => {
     movie && (
       <div>
         <div className="gradient-gray lg:px-32 md:px-8 md:py-12 p-4 flex md:flex-row flex-col md:items-center md:gap-8 gap-4">
-          <div className="flex flex-col justify-between md:gap-3 gap-1">
+          <div className="flex flex-col md:gap-3 gap-1">
             <span className="body font-bold uppercase text-yellow-600">
               Movie
             </span>
@@ -37,10 +32,10 @@ export const MovieDetails = () => {
             </h2>
             <div className="flex gap-3.5">
               <span className="md:caption-2 text-sm font-bold">
-                {getMovieReleaseYear(movie)}
+                {getYear(movie.release_date)}
               </span>
               <span className="md:caption-2 text-sm font-bold">
-                {getFormattedRuntime(movie)}
+                {getFormattedRuntime(movie.runtime)}
               </span>
             </div>
           </div>
@@ -69,7 +64,7 @@ export const MovieDetails = () => {
           >
             {movie.poster_path && (
               <img
-                src={getPoster(movie, "w342")}
+                src={getPoster(movie.poster_path, "w342")}
                 className="max-w-full h-full"
                 onLoad={() => setIsLoadingPoster(false)}
                 loading="lazy"
@@ -77,15 +72,15 @@ export const MovieDetails = () => {
             )}
           </div>
 
-          <div className="flex-1 flex flex-col items-start justify-around gap-6">
-            <div className="hidden md:flex border bg-yellow-600 justify-start items-center body font-semibold gap-2.5 border-yellow-600 rounded-lg overflow-hidden">
+          <div className="flex-1 flex flex-col items-start gap-6">
+            {/* <div className="hidden md:flex border bg-yellow-600 justify-start items-center body font-semibold gap-2.5 border-yellow-600 rounded-lg overflow-hidden">
               <span className="py-2.5 pl-4 w-10"></span>
               <div className="flex-1 pl-4 p-2.5 bg-black banner-mask">
                 {movie.tagline.charAt(movie.tagline.length - 1) === "."
                   ? movie.tagline.substring(0, movie.tagline.length - 1)
                   : movie.tagline}
               </div>
-            </div>
+            </div> */}
 
             <div className="flex flex-wrap gap-4">
               {movie.genres.map((genre) => (

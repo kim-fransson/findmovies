@@ -13,37 +13,32 @@ export const getTitle = (media: Media) => {
 };
 
 export const getReleaseYear = (media: Media) => {
-  const releaseYear = isMovie(media)
+  const releaseDate = isMovie(media)
     ? media.release_date
     : isTV(media)
       ? media.first_air_date
       : "";
-  if (releaseYear) {
-    const year = parseInt(releaseYear.split("-")[0]);
+  return getYear(releaseDate);
+};
+
+export const getYear = (date: string) => {
+  if (date) {
+    const year = parseInt(date.split("-")[0]);
     return isNaN(year) ? undefined : year.toString();
   }
   return undefined;
 };
 
-export const getMovieReleaseYear = (movie: MovieDetails | Movie) => {
-  const releaseYear = movie.release_date;
-  if (releaseYear) {
-    const year = parseInt(releaseYear.split("-")[0]);
-    return isNaN(year) ? undefined : year.toString();
-  }
-  return undefined;
-};
-
-export const getFormattedRuntime = (movie: MovieDetails): string => {
-  const minutes = movie.runtime;
+export const getFormattedRuntime = (runtime: number): string => {
+  const minutes = runtime;
   const hours = Math.floor(minutes / 60);
   const remainingMinutes = minutes % 60;
   return `${hours}h ${remainingMinutes}m`;
 };
 
-export const getPoster = (media: Media | MovieDetails, size = "w92") => {
-  return media.poster_path !== null
-    ? `https://image.tmdb.org/t/p/${size}/${media.poster_path}`
+export const getPoster = (posterPath: string, size = "w92") => {
+  return posterPath !== null
+    ? `https://image.tmdb.org/t/p/${size}/${posterPath}`
     : undefined;
 };
 

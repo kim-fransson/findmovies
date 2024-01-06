@@ -49,7 +49,7 @@ export const MediaSearchResult = (props: MediaSearchResultProps) => {
       >
         {media.poster_path && (
           <img
-            src={getPoster(media)}
+            src={getPoster(media.poster_path)}
             className="max-w-full h-auto"
             onLoad={() => setIsLoadingPoster(false)}
           />

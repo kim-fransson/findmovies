@@ -2,7 +2,7 @@
 
 Project designed from [BigDevSoon.me](https://bigdevsoon.me/)
 
-Live demo https://findmovies-iota.vercel.app/
+Live demo https://findmovies.made-by-kim.com/
 
 ## Preview
 

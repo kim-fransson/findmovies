@@ -92,6 +92,7 @@ export default {
   ],
 
   daisyui: {
+    themes: ["dark"],
     base: false, // applies background color and foreground color for root element by default
   },
 };
